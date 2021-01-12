@@ -24,7 +24,12 @@ export default class WriteStoryScreen extends React.Component {
       title: this.state.title,
       author: this.state.author,
       content: this.state.content,
-    })
+    });
+    this.setState({
+      title: '',
+      author: '',
+      content: ''
+    });
   }
 
   render() {
