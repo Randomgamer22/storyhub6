@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ToastAndroid } from 'react-native';
 import db from '../config'
+import firebase from 'firebase';
 
 export default class WriteStoryScreen extends React.Component {
 
@@ -14,7 +15,7 @@ export default class WriteStoryScreen extends React.Component {
     }
   }
 
-  submitStory() {
+  submitStory = async () => {
     this.setState({
       storyNumber: this.state.storyNumber+1
     })
@@ -24,11 +25,19 @@ export default class WriteStoryScreen extends React.Component {
       author: this.state.author,
       content: this.state.content,
     })
+
+    ToastAndroid.show('Your story has been recieved!', ToastAndroid.SHORT, ToastAndroid.BOTTOM);
+
+    this.setState({
+      title: '',
+      author: '',
+      content: ''
+    })
   }
 
   render() {
     return (
-      <View style = {styles.container}>
+      <KeyboardAvoidingView style = {styles.container} behavior = "padding" enabled>
         <View style = {styles.header}>
           <Text style = {styles.headerText}>Story Hub</Text>
         </View>
@@ -43,7 +52,7 @@ export default class WriteStoryScreen extends React.Component {
             Submit
           </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
 
 
     )
