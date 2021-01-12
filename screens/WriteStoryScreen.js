@@ -11,16 +11,11 @@ export default class WriteStoryScreen extends React.Component {
       title: '',
       author: '',
       content: '',
-      storyNumber: 0,
     }
   }
 
   submitStory = async () => {
-    this.setState({
-      storyNumber: this.state.storyNumber+1
-    })
-    db.collection('stories').add('ST' + this.state.storyNumber);
-    db.collection('stories').doc('ST' + this.state.storyNumber).add({
+    db.collection('stories').add({
       title: this.state.title,
       author: this.state.author,
       content: this.state.content,
