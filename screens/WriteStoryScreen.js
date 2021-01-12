@@ -15,7 +15,7 @@ export default class WriteStoryScreen extends React.Component {
     }
   }
 
-  submitStory() {
+  submitStory = async () => {
     this.setState({
       storyNumber: this.state.storyNumber+1
     })
